@@ -6,16 +6,19 @@ const reducers = (state = initialSatate, action)=>{
     switch(action.type){
         case "ADD_TODO" :
             const {id, data} = action.payload
-           return{
-            ...state,
-            lists:[
-                ...state.lists,
-                {
-                    id:id,
-                    data:data
-                }
-            ]
-           }
+            if(data && data.length > 2){
+                return{
+                    ...state,
+                    lists:[
+                        ...state.lists,
+                        {
+                            id:id,
+                            data:data
+                        }
+                    ]
+                   }
+            }
+          
            case "DELETE_TODO" :
            const newLists = state.lists.filter((elem)=>elem.id !== action.id)
            return{
